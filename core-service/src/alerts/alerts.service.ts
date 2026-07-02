@@ -1,5 +1,5 @@
 import { Injectable, NotFoundException } from '@nestjs/common'
-import { PrismaClient } from "../generated/prisma/client"
+import { PrismaService } from '../prisma/prisma.service'
 import { Telegraf } from 'telegraf'
 
 interface CreateAlertDto {
@@ -12,7 +12,7 @@ interface CreateAlertDto {
 export class AlertsService {
   private readonly bot: Telegraf
 
-  constructor(private prisma: PrismaClient) {
+  constructor(private prisma: PrismaService) {
     const token = process.env.TELEGRAM_BOT_TOKEN
     
     if (!token) {
